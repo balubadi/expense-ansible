@@ -35,12 +35,6 @@
   args:
     chdir: /app
 
-
-- name: Copy backend startUP script
-  ansible.builtin.template:
-    src: run.sh
-    dest: /app/run.sh
-
 - name: Install mysql clint
   ansible.builtin.dnf:
     name: mysql
