@@ -30,6 +30,14 @@
     component: backend
     app_user: expense
 
+- name: Download NodeJS Dependencies
+  ansible.builtin.shell: npm install
+  args:
+    chdir: /app
+
+
+
+
 - name: Install mysql clint
   ansible.builtin.dnf:
     name: mysql
