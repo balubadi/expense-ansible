@@ -1,45 +1,48 @@
 - name: Set HostName
   ansible.builtin.shell: set-hostname {{env}}-{{component}}
 
-- name: Disable NodeJS default Version
+- name: Disable nodejs default version
   ansible.builtin.shell: dnf module disable nodejs -y
 
-- name: Enable NodeJS 18 Version
+- name: Enable nodejs 18 version
   ansible.builtin.shell: dnf module enable nodejs:18 -y
 
-- name: Install NodeJS
+- name: Install nodejs
   ansible.builtin.dnf:
     name: nodejs
     state: present
 
-- name: Copy Backend Service File
+- name: copy the backend service file
   ansible.builtin.template:
     src: backend.service
     dest: /etc/systemd/system/backend.service
 
-- name: Add Application User
+- name: Add application User
   ansible.builtin.user:
     name: expense
 
-- name: Import Common Role - App Pre-requisites
+- name: Import role app-prereq from common
   ansible.builtin.import_role:
     name: common
     tasks_from: app-prereq
   vars:
-    app_dir: /app
+    app_dir : /app
     component: backend
     app_user: expense
 
-- name: Download NodeJS Dependencies
-  ansible.builtin.shell: npm install
-  args:
-    chdir: /app
+- name: Copy backend startUP script
+  ansible.builtin.template:
+    src: run.sh
+    dest: /app/run.sh
 
-
-- name: Install MySQL Client
+- name: Install mysql clint
   ansible.builtin.dnf:
     name: mysql
     state: present
+
+- name: Load Schema
+  ansible.builtin.shell: mysql -h "{{ lookup('amazon.aws.aws_ssm', '{{env}}.rds.endpoint', region='us-east-1' ) }}" -u"{{ lookup('amazon.aws.aws_ssm', '{{env}}.rds.username', region='us-east-1' ) }}" -p"{{ lookup('amazon.aws.aws_ssm', '{{env}}.rds.password', region='us-east-1' ) }}" < /app/schema/backend.sql
+
 
 - name: Load Schema
   ansible.builtin.shell: mysql -h 54.198.46.134 -uroot -p${{MYSQL}} < /app/schema/backend.sql
