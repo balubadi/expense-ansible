@@ -22,14 +22,15 @@ filebeat.inputs:
   - type: filestream
 
     # Unique ID among all inputs, an ID is required.
-    id: {{ component }}
+    id: {{component}}
 
     # Change to true to enable this input configuration.
     enabled: true
 
     # Paths that should be crawled and fetched. Glob based paths.
     paths:
-      - {{ log_file }}
+      - {{log_file}}
+      #- c:\programdata\elasticsearch\logs\*
 
     # Exclude lines. A list of regular expressions to match. It drops the lines that are
     # matching any regular expression from the list.
@@ -137,7 +138,7 @@ setup.kibana:
 # ---------------------------- Elasticsearch Output ----------------------------
 #output.elasticsearch:
   # Array of hosts to connect to.
-#  hosts: ["172.31.20.110:9200"]
+  #hosts: ["localhost:9200"]
 
   # Performance preset - one of "balanced", "throughput", "scale",
   # "latency", or "custom".
@@ -153,8 +154,8 @@ setup.kibana:
 
   # ------------------------------ Logstash Output -------------------------------
   output.logstash:
-   The Logstash hosts
-  hosts: ["172.31.20.110:5044"]
+  # The Logstash hosts
+  hosts: ["172.31.30.9:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
