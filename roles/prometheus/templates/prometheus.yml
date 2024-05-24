@@ -26,4 +26,9 @@ scrape_configs:
 
   - job_name: "ec2-node"
     ec2_sd_configs:
+      - region: us-east-1
+        port: 9100
+        filters:
+          - name: "tag:Monitor"
+            values: [ "true" ]
 
