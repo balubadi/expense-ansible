@@ -21,6 +21,22 @@ rule_files:
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: "prometheus"
+    static_configs:
+      - targets: [ "localhost:9090" ]
+
+  - job_name: "ec2-node"
+    relabel_configs:
+      - source_labels: [ __meta_ec2_instance_id ]
+        target_label: instance_id
+      - source_labels: [ __meta_ec2_private_ip ]
+        target_label: private_ip
+      - source_labels: [ __meta_ec2_tag_Name ]
+        target_label: name
+
+
+
+
+
 
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
