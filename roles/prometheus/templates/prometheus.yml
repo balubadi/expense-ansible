@@ -24,3 +24,6 @@ scrape_configs:
     static_configs:
       - targets: [ "localhost:9090" ]
 
+  - job_name: "ec2-node"
+    ec2_sd_configs:
+
