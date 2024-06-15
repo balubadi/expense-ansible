@@ -97,9 +97,11 @@
             "uid": "cdmmlwpqhakn4b"
           },
           "editorMode": "code",
-          "expr": "up",
+          "expr":  "up{name=\"{{component}}-{{env}}\"}",
           "instant": false,
-          "legendFormat": "{{name}}",
+        {% raw %}
+        "legendFormat": "{{instance}}",
+        {% endraw %}
           "range": true,
           "refId": "A"
         }
@@ -195,9 +197,11 @@
             "uid": "cdmmlwpqhakn4b"
           },
           "editorMode": "code",
-          "expr": "((node_memory_MemFree_bytes{name=\"frontend-dev\"} +node_memory_Cached_bytes{name=\"frontend-dev\"}+node_memory_Buffers_bytes{name=\"frontend-dev\"})/node_memory_MemTotal_bytes{name=\"frontend-dev\"})*100",
+          "expr": "((node_memory_MemFree_bytes{name=\"{{component}}-{{env}}\"} +node_memory_Cached_bytes{name=\"{{component}}-{{env}}\"} +node_memory_Buffers_bytes{name=\"{{component}}-{{env}}\"} )/node_memory_MemTotal_bytes{name=\"{{component}}-{{env}}\"} )*100",
           "instant": false,
-          "legendFormat": "{{name}}",
+        {% raw %}
+        "legendFormat": "{{name}}",
+        {% endraw %}
           "range": true,
           "refId": "A"
         }
@@ -218,7 +222,7 @@
   "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "browser",
-  "title": "New dashboard",
+  "title": "{{component}}",
   "uid": "admmm62fskhz4d",
   "version": 7,
   "weekStart": ""
