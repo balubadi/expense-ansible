@@ -41,7 +41,7 @@
     state: present
 
 - name: Load Schema
-  ansible.builtin.shell: mysql -h 172.31.46.76 -uroot -p{{ lookup('amazon.aws.aws_ssm', '{{env}}.rds.password', region='us-east-1' ) }} < /app/schema/backend.sql
+  ansible.builtin.shell: mysql -h mysql-dev.pavanbalubadi3017.online -uroot -p{{ lookup('amazon.aws.aws_ssm', '{{env}}.rds.password', region='us-east-1' ) }} < /app/schema/backend.sql
 - name: Start Backend Service
   ansible.builtin.systemd:
     name: backend
