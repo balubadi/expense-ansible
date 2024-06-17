@@ -10,8 +10,8 @@ receivers:
       - to: balubadipavan@gmail.com
         from: balubadipavan@gmail.com
         smarthost: "email-smtp.us-east-1.amazonaws.com:587"
-        auth_username: ses-smtp-user.20240615-172137
-        auth_password: AKIAYS2NQBF5BMGFPJUA
+        auth_username: AKIAYS2NQBF5NBSYTOQU
+        auth_password: BMYXiZvVENy0bb9oWEu2fBEoFgixJ5s3mSTQDeWQW2r6
         require_tls: true
 inhibit_rules:
   - source_match:
