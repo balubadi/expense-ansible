@@ -35,6 +35,15 @@
   args:
     chdir: /app
 
+- name: Install New Relic NodeJS Library
+  ansible.builtin.shell: npm install newrelic --save
+  args:
+    chdir: /app
+
+- name: Copy Backend StartUP Script
+  ansible.builtin.template:
+    src: run.sh
+
 - name: Install mysql clint
   ansible.builtin.dnf:
     name: mysql
