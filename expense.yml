@@ -5,3 +5,4 @@
     - "{{role_name}}"
 
   #JENKINS_URL/multibranch-webhook-trigger/invoke?token=[Trigger token]
+  # jenkins-pull-request
